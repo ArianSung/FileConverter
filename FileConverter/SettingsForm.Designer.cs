@@ -52,6 +52,8 @@
             okButton.TabIndex = 1;
             okButton.Text = "확인";
             okButton.UseVisualStyleBackColor = true;
+            okButton.Click += okButton_Click;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // cancelButton
             // 
@@ -84,6 +86,7 @@
             Controls.Add(label1);
             Name = "SettingsForm";
             Text = "파일확장명제외";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             ResumeLayout(false);
             PerformLayout();
         }
