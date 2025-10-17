@@ -118,6 +118,7 @@
             Controls.Add(selectFilesButton);
             Name = "Main";
             Text = "파일 컨버터";
+            FormClosing += Main_FormClosing;
             Load += Main_Load;
             ResumeLayout(false);
             PerformLayout();

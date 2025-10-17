@@ -3,10 +3,7 @@ namespace FileConverter
     public partial class Main : Form
     {
         // 제외할 확장자 목록을 저장할 변수 (프로그램 전체에서 사용)
-        private HashSet<string> extensionsToExclude = new HashSet<string>
-        {
-            "dll", "exe", "bin", "jpg", "png", "gif" // 기본값 설정
-        };
+        private HashSet<string> extensionsToExclude = new HashSet<string>();
 
         public Main()
         {
@@ -16,6 +13,12 @@ namespace FileConverter
         private async void Main_Load(object sender, EventArgs e)
         {
             this.extensionsToExclude = await SettingsManager.LoadSettingsAsync();
+        }
+
+        private async void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 프로그램이 닫히기 직전에 현재 설정을 파일에 저장합니다.
+            await SettingsManager.SaveSettingsAsync(this.extensionsToExclude);
         }
 
         private void selectFilesButton_Click(object sender, EventArgs e)
@@ -172,5 +175,7 @@ namespace FileConverter
                 UpdateConvertButtonState();
             }
         }
+
+        
     }
 }
